@@ -20,11 +20,7 @@ var Waldo = {
   },
 
 
-  setListeners: function(){
-    $("#photo").click(function(event){
-      Waldo.createTag(event.pageX, event.pageY);
-    })
-  },
+
 
   createTag: function(x, y){
     var tag = new Waldo.tag(x,y);
