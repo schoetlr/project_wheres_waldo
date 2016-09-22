@@ -10,11 +10,10 @@ var Controller = {
   },
 
   processClick: function(event){
-    console.log("running");
-    console.log(event.pageX);
-    //the EVENT is loaded and there is a pageX
-    var x = event.pageX;
-    var y = event.pageY;
+    //set the vars so the tag is centered around the click
+    var x = event.pageX - 10;
+    var y = event.pageY - 30;
+
     Waldo.createTag(x, y);
     View.createTag(Controller.getLastTag());
   },
@@ -25,6 +24,14 @@ var Controller = {
 
   getLastTag: function(){
     return Waldo.tags[0];
+  },
+
+  getCharacterNames: function(){
+    var chars = Waldo.characters.map(function(index, character){
+      return character.name
+    })
+
+    return chars;
   }
 
 }

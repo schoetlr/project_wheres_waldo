@@ -26,12 +26,32 @@ var View = {
     var y = tag.y;
 
     $tag = $("<div class='tag'></div>")
-            .attr("position", "absolute")
-            .attr("left", x)
-            .attr("top", y)
-            .css("visibility", "visible");
+            .css("left", x + "px")
+            .css("top", y + "px")
+            .css("visibility", "visible")
+            .data("left", x);
 
     $("body").append($tag);
+
+    //make dropdown
+
+    $characterContainer = $("<div class='character-container'></div>");
+    var $dropdown = $("<select class='characters'></select>");
+    $dropdown.data("left", x);
+
+    $characterContainer.append($dropdown);
+    $characterContainer.css("top", y + 60)
+                        .css("left", x);
+    
+    var characters = Controller.getCharacterNames();
+
+    characters.forEach(function(character){
+      var $option = $("<option>" + character + "</option>");
+      $dropdown.append($option);
+    })
+    
+    $("body").append($characterContainer);
+    //add char names to ul
 
   },
 

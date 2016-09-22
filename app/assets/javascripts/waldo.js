@@ -25,6 +25,7 @@ var Waldo = {
   createTag: function(x, y){
     var tag = new Waldo.tag(x,y);
     Waldo.tags.unshift(tag);
+    
   }
 
 
