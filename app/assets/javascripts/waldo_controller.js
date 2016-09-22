@@ -7,12 +7,16 @@ var Controller = {
     var tags = Controller.getTags();
 
     View.init(tags);
-    console.log(tags);
+    
   },
 
   processClick: function(event){
     //set the vars so the tag is centered around the click
-    var x = event.pageX - 10;
+    //the event.pageX/Y is relative to browser
+    
+    //the css is relative to the div
+
+    var x = event.pageX - 20;
     var y = event.pageY - 30;
 
     //Waldo.createTag(x, y);

@@ -11,9 +11,32 @@ var View = {
       Controller.processClick(event);
     })
 
+    $("#photo-container").on("mouseleave", function(){
+      console.log('hiding');
+      //View.hideTags(event);
+      $(".tag").hide();
+      $(".character-select").hide();
+    });
 
+    $("#photo-container").on("mouseenter", function(event){
+      View.showTags(event);
+    })
     
 
+  },
+
+  showTags: function(event){
+    event.preventDefault();
+    $(".tag").show();
+    $(".character-select").show();
+    console.log("showing");
+  },
+
+  hideTags: function(event){
+    console.log("hiding");
+    $(".tag").hide();
+    $(".character-select").hide();
+    
   },
 
   setSelect: function(){
@@ -44,8 +67,8 @@ var View = {
             .css("visibility", "visible")
             .data("left", x)
             .data("top", y);
-
-    $("body").append($tag);
+    //not appending to body is making position weird
+    $("#photo-container").append($tag);
 
     //make dropdown
 
@@ -65,7 +88,7 @@ var View = {
       $dropdown.append($option);
     })
     
-    $("body").append($characterContainer);
+    $("#photo-container").append($characterContainer);
     //add char names to ul
 
     View.setSelect();
