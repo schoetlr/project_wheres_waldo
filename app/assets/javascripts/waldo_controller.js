@@ -3,6 +3,7 @@
 var Controller = {
 
   init: function(){
+    Waldo.init();
     var tags = Controller.getTags();
 
     View.init(tags);
@@ -27,7 +28,7 @@ var Controller = {
   },
 
   getCharacterNames: function(){
-    var chars = Waldo.characters.map(function(index, character){
+    var chars = Waldo.characters.map(function(character, index){
       return character.name
     })
 

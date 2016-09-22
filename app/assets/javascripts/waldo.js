@@ -26,6 +26,18 @@ var Waldo = {
     var tag = new Waldo.tag(x,y);
     Waldo.tags.unshift(tag);
     
+  },
+
+  buildCharacters: function(){
+    var names = ["Waldo", "Wenda", "Odlaw", "Wizard", "Woof"];
+    names.forEach(function(name){
+      var char = new Waldo.character(name);
+      Waldo.characters.push(char);
+    })
+  },
+
+  init: function(){
+    Waldo.buildCharacters();
   }
 
 
