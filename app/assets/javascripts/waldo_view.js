@@ -11,6 +11,20 @@ var View = {
       Controller.processClick(event);
     })
 
+
+    
+
+  },
+
+  setSelect: function(){
+    $(".character-select").change(function(event){
+      $select = $(event.target);
+      var char = $select.val();
+      var x = $select.data("left");
+      var y = $select.data("top");
+      //pass the associated tag and the event
+      Controller.selectCharacter(x, y, char);
+    })
   },
 
   render: function(tags){
@@ -21,30 +35,31 @@ var View = {
     $(".tag").css("visibility", "hidden");
   },
 
-  createTag: function(tag){
-    var x = tag.x;
-    var y = tag.y;
+  createTag: function(x, y){
+    
 
     $tag = $("<div class='tag'></div>")
             .css("left", x + "px")
             .css("top", y + "px")
             .css("visibility", "visible")
-            .data("left", x);
+            .data("left", x)
+            .data("top", y);
 
     $("body").append($tag);
 
     //make dropdown
 
     $characterContainer = $("<div class='character-container'></div>");
-    var $dropdown = $("<select class='characters'></select>");
-    $dropdown.data("left", x);
+    var $dropdown = $("<select class='character-select'></select>");
+    $dropdown.data("left", x)
+              .data("top", y);
 
     $characterContainer.append($dropdown);
     $characterContainer.css("top", y + 60)
                         .css("left", x);
     
     var characters = Controller.getCharacterNames();
-
+    $dropdown.append($("<option>"));
     characters.forEach(function(character){
       var $option = $("<option>" + character + "</option>");
       $dropdown.append($option);
@@ -52,6 +67,8 @@ var View = {
     
     $("body").append($characterContainer);
     //add char names to ul
+
+    View.setSelect();
 
   },
 

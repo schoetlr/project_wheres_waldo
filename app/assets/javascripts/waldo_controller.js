@@ -15,8 +15,13 @@ var Controller = {
     var x = event.pageX - 10;
     var y = event.pageY - 30;
 
-    Waldo.createTag(x, y);
-    View.createTag(Controller.getLastTag());
+    //Waldo.createTag(x, y);
+    //don't save tag to the model until a char is selected
+    View.createTag(x, y);
+  },
+
+  selectCharacter: function(x, y, charName){
+    Waldo.createTag(x, y, charName);
   },
 
   getTags: function(){

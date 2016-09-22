@@ -12,18 +12,18 @@ var Waldo = {
     this.y = y;
   },
 
-  tag: function(x, y){
+  tag: function(x, y, characterName){
     this.x = x;
     this.y = y;
-    this.character = undefined;
+    this.character = characterName;
 
   },
 
 
 
 
-  createTag: function(x, y){
-    var tag = new Waldo.tag(x,y);
+  createTag: function(x, y, name){
+    var tag = new Waldo.tag(x, y, name);
     Waldo.tags.unshift(tag);
     
   },
