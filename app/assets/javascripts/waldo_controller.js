@@ -11,6 +11,15 @@ var Controller = {
     
   },
 
+  deleteTag: function(event, id){
+    //remove the tag and it's link from the view
+
+    //send ajax request to delete from db
+    //pass the tag id
+    Waldo.deleteTag(id);
+    
+  },
+
   processClick: function(event){
     //set the vars so the tag is centered around the click
     //the event.pageX/Y is relative to browser

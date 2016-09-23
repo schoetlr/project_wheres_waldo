@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tags, only: [:create, :index]
+  resources :tags, only: [:create, :index, :destroy]
   get 'waldo' => 'photos#waldo'
   root 'photos#waldo'
 

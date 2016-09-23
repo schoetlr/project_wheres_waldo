@@ -13,11 +13,7 @@ var View = {
     })
 
     $("#photo-container").on("mouseleave", function(){
-      
-      //View.hideTags(event);
-      //won't work calling View.hideTags()??
-      $(".tag").hide();
-      $(".character-select").hide();
+      View.hideTags(event);
     });
 
     $("#photo-container").on("mouseenter", function(event){
@@ -31,11 +27,11 @@ var View = {
     event.preventDefault();
     $(".tag").show();
     $(".character-select").show();
-    
+    $(".delete-link").show();
   },
 
   hideTags: function(event){
-    console.log("hiding");
+    $(".delete-link").hide();
     $(".tag").hide();
     $(".character-select").hide();
     
@@ -53,13 +49,10 @@ var View = {
   },
 
   render: function(tags){
-
+    console.log("RENDERING");
     View.displayTags(tags);
   },
 
-  hideTags: function(){
-    $(".tag").css("visibility", "hidden");
-  },
 
   createTag: function(x, y){
     
@@ -111,14 +104,39 @@ var View = {
     var x = tag.x;
     var y = tag.y;
     var character = tag.character;
+    
 
     $tag = $("<div class='tag'></div>")
             .css("left", x + "px")
             .css("top", y + "px")
             .css("visibility", "visible")
             .data("left", x)
-            .data("top", y);
+            .data("top", y)
+            .data("id", tag.id);
     
     $("#photo-container").append($tag);
+    console.log($(".tag", "#photo-container").length);
+    //the tag id is undefined
+    View.createLink(x, y, tag.id);
+  },
+
+  createLink: function(x, y, id){
+    $link = $("<a href='#'>Delete</a>")
+              .addClass("delete-link")
+              .css("position", "absolute")
+              .data("id", id)
+              .css("top", (y-15) + "px")
+              .css("left", x + "px");
+
+    $("#photo-container").append($link);
+
+    //set listener
+    $link.click(function(event){
+      var $link = $(event.target);
+      foo = $link;
+      var id = $link.data("id");
+      
+      Controller.deleteTag(event, id);
+    })
   }
 }
