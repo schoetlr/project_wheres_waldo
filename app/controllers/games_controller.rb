@@ -14,8 +14,23 @@ class GamesController < ApplicationController
     end
   end
 
-  def update
+  def finish
+    @game = Game.find(params[:game_id])
 
+    @game.user_name = params[:user_name]
+    @game.completion = Time.now
+    if @game.save
+      respond_to do |format|
+        format.html
+
+        format.json{render json: @game}
+      end
+    else
+      respond_to do |format|
+        format.html
+        format.json{render nothing: true}
+      end
+    end
   end
 
   def score

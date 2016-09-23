@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:create, :index, :destroy]
   resources :games, only: [:create, :update] do 
     post 'score'
+    post 'finish'
   end
   get 'waldo' => 'photos#waldo'
   root 'photos#waldo'
