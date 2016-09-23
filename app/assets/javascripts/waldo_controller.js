@@ -15,7 +15,7 @@ var Controller = {
     //the event.pageX/Y is relative to browser
     
     //the css is relative to the div
-
+    //x and y are the top left of the tag
     var x = event.pageX - 20;
     var y = event.pageY - 30;
 
@@ -26,6 +26,7 @@ var Controller = {
 
   selectCharacter: function(x, y, charName){
     Waldo.createTag(x, y, charName);
+    Waldo.persistTag(x, y, charName);
   },
 
   getTags: function(){

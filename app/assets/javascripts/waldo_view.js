@@ -12,8 +12,9 @@ var View = {
     })
 
     $("#photo-container").on("mouseleave", function(){
-      console.log('hiding');
+      
       //View.hideTags(event);
+      //won't work calling View.hideTags()??
       $(".tag").hide();
       $(".character-select").hide();
     });
@@ -29,7 +30,7 @@ var View = {
     event.preventDefault();
     $(".tag").show();
     $(".character-select").show();
-    console.log("showing");
+    
   },
 
   hideTags: function(event){
