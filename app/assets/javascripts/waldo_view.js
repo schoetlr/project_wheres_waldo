@@ -112,19 +112,27 @@ var View = {
             .css("visibility", "visible")
             .data("left", x)
             .data("top", y)
-            .data("id", tag.id);
+            .attr("data-id", tag.id);
+            //.data("id", tag.id);
     
     $("#photo-container").append($tag);
     console.log($(".tag", "#photo-container").length);
-    //the tag id is undefined
+    
     View.createLink(x, y, tag.id);
+  },
+
+  removeTag: function(id){
+    $tag  = $(".tag[data-id='" + id + "']");
+    
+    $tag.remove();
+    $(".delete-link[data-id='" + id + "']").remove();
   },
 
   createLink: function(x, y, id){
     $link = $("<a href='#'>Delete</a>")
               .addClass("delete-link")
               .css("position", "absolute")
-              .data("id", id)
+              .attr("data-id", id)
               .css("top", (y-15) + "px")
               .css("left", x + "px");
 

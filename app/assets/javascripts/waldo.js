@@ -41,7 +41,8 @@ var Waldo = {
 
       success: function(json){
         console.log("tag persisted");
-        Waldo.createTag(json.x, json.y, json.character);
+        Waldo.createTag(json.x, json.y, json.character, json.id);
+        Waldo.getPersistedTags();
       },
 
       error: function(){
@@ -50,6 +51,7 @@ var Waldo = {
 
       complete: function(){
         console.log("persist request complete");
+        
       }
     })
   },
@@ -62,13 +64,14 @@ var Waldo = {
     })
   },
 
-  getPersistedTags: function(){
+  getPersistedTags: function(id){
     $.ajax({
       url: '/tags.json',
       type: "GET",
       dataType: 'json',
 
       success: function(json){
+        Waldo.tags = [];
         json.forEach(function(tag){
           Waldo.createTag(tag.x, tag.y, tag.character, tag.id);
         })
@@ -82,13 +85,17 @@ var Waldo = {
 
       complete: function(){
         console.log("getting persisted tags complete");
+
+        if(id){
+          View.removeTag(id);
+        }
       }
     })
   },
 
   deleteTag: function(id){
     
-    //WORKS but all the tags are removed from the DOM, back on refresh
+    
     $.ajax({
       url: "/tags/" + id + ".json",
       type: "DELETE",
@@ -99,6 +106,7 @@ var Waldo = {
       contentType: "application/json",
       success: function(json){
         console.log("IT FINALLY WORKED");
+        Waldo.getPersistedTags(id);
       },
 
       error: function(){
@@ -106,11 +114,8 @@ var Waldo = {
       },
 
       complete: function(){
-        console.log("request complete");
-        console.log("after " + $(".tag", "#photo-container").length);
-        //tags aren't shwoing up on pic even though their jquery count is there
-        //fixing the success of the ajax call will fix most likely
-        View.render(Waldo.tags);
+        
+        
 
       }
 
