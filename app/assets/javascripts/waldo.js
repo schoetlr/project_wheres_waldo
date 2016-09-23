@@ -39,8 +39,9 @@ var Waldo = {
       contentType: "application/json",
       data: JSON.stringify({ tag: {x: x, y: y, character: name} }),
 
-      success: function(){
+      success: function(json){
         console.log("tag persisted");
+        Waldo.createTag(json.x, json.y, json.character);
       },
 
       error: function(){
@@ -61,8 +62,38 @@ var Waldo = {
     })
   },
 
+  getPersistedTags: function(){
+    $.ajax({
+      url: '/tags.json',
+      type: "GET",
+      dataType: 'json',
+
+      success: function(json){
+        json.forEach(function(tag){
+          Waldo.createTag(tag.x, tag.y, tag.character);
+        })
+        //Tags are stored after this
+        View.init(Waldo.tags);
+      },
+
+      error: function(){
+        console.log("could not get persisted tags");
+      },
+
+      complete: function(){
+        console.log("getting persisted tags complete");
+      }
+    })
+  },
+
   init: function(){
     Waldo.buildCharacters();
+    
+
+    Waldo.getPersistedTags();
+    //right after this the tags are not stored???
+    //maybe the request is not complete at this time
+    
   }
 
 

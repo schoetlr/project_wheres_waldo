@@ -4,9 +4,10 @@ var Controller = {
 
   init: function(){
     Waldo.init();
-    var tags = Controller.getTags();
-
-    View.init(tags);
+    //var tags = Controller.getTags();
+    //no tags stored in Waldo
+    //View.init(tags);
+    //init the view after the ajax request for tags is complete
     
   },
 
@@ -25,7 +26,8 @@ var Controller = {
   },
 
   selectCharacter: function(x, y, charName){
-    Waldo.createTag(x, y, charName);
+    //Waldo.createTag(x, y, charName);
+    //call the above on persistTag success
     Waldo.persistTag(x, y, charName);
   },
 

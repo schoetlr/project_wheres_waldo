@@ -1,6 +1,7 @@
 var View = {
 
   init: function(tags){
+
     View.render(tags);
     View.setListeners();
   },
@@ -52,6 +53,7 @@ var View = {
   },
 
   render: function(tags){
+
     View.displayTags(tags);
   },
 
@@ -68,7 +70,7 @@ var View = {
             .css("visibility", "visible")
             .data("left", x)
             .data("top", y);
-    //not appending to body is making position weird
+    
     $("#photo-container").append($tag);
 
     //make dropdown
@@ -97,8 +99,26 @@ var View = {
   },
 
   displayTags: function(tags){
+
     tags.forEach(function(tag){
+
       View.displayTag(tag);
     })
+  },
+
+  displayTag: function(tag){
+    
+    var x = tag.x;
+    var y = tag.y;
+    var character = tag.character;
+
+    $tag = $("<div class='tag'></div>")
+            .css("left", x + "px")
+            .css("top", y + "px")
+            .css("visibility", "visible")
+            .data("left", x)
+            .data("top", y);
+    
+    $("#photo-container").append($tag);
   }
 }
