@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923115122) do
+ActiveRecord::Schema.define(version: 20160923172918) do
+
+  create_table "games", force: :cascade do |t|
+    t.string   "user_name"
+    t.integer  "score",      default: 0
+    t.datetime "completion"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "tags", force: :cascade do |t|
     t.integer  "x"

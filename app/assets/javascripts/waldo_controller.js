@@ -8,7 +8,11 @@ var Controller = {
     //no tags stored in Waldo
     //View.init(tags);
     //init the view after the ajax request for tags is complete
-    
+    Game.newGame();
+  },
+
+  score: function(score){
+    View.displayScore(score);
   },
 
   deleteTag: function(event, id){

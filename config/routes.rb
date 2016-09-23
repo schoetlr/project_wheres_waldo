@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :tags, only: [:create, :index, :destroy]
+  resources :games, only: [:create, :update] do 
+    post 'score'
+  end
   get 'waldo' => 'photos#waldo'
   root 'photos#waldo'
 

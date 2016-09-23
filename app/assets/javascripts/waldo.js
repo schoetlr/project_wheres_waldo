@@ -43,6 +43,7 @@ var Waldo = {
         console.log("tag persisted");
         Waldo.createTag(json.x, json.y, json.character, json.id);
         Waldo.getPersistedTags();
+        Game.updateScore(1);
       },
 
       error: function(){
@@ -107,6 +108,7 @@ var Waldo = {
       success: function(json){
         console.log("IT FINALLY WORKED");
         Waldo.getPersistedTags(id);
+        Game.updateScore(-1);
       },
 
       error: function(){

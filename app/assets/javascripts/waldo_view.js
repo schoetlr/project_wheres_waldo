@@ -146,5 +146,9 @@ var View = {
       
       Controller.deleteTag(event, id);
     })
+  },
+
+  displayScore: function(score){
+    $("#score").text("Score: " + score);
   }
 }
